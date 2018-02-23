@@ -1,0 +1,21 @@
+<div class="container">
+    <p>Other who added <%= @song.artist %> - <%= @song.title %></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Times Added</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if @song.users %>
+      <% @song.users.each do |user| %>
+        <tr>
+          <td><a href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a></td>
+          <td><%= Playlist.find_by(user: user,song: @song).add_count %></td>
+        </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+    </table>
+</div>
